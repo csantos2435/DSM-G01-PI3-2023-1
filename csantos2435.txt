@@ -1,0 +1,7 @@
+populate - tabelas dependentes, o populate é inserido na tabela depentende ex: Tabela venda depende de produto , então a tabela
+venda vai possuir o populate
+
+documento -É uma Collection
+
+SubDocumento - São Collections (documentos) que estão relacionadas (ligadas) há documentos ex: Tabela Venda possui um chave da 
+Tabela - Produto, então A Collection Produto é um SubDocumento da Collection Vendas
