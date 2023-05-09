@@ -5,19 +5,22 @@ const schema = mongoose.Schema({
     type: String,
     required: true  
   },
+  sexo: {
+    type: String,
+    required: true
+  },
   telefone: {
+    type: String,
+    required: true
+  },
+  email: {
     type: String,
     required: true
   },
   endereco: {
     type: String,
-    required: true
+    required: false
   },
-  salario: {
-    type: Number,
-    min: 0.01,
-    require: true 
-  }
 })
 
 /*
@@ -27,4 +30,4 @@ const schema = mongoose.Schema({
   3º: nome da collection no banco de dados (convenção: mesmo nome do model, mas com
       letra minúscula e no plural)
 */
-module.exports = mongoose.model('Funcionario', schema, 'funcionarios')
+module.exports = mongoose.model('Cliente', schema, 'clientes')
