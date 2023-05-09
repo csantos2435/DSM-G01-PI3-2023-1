@@ -1,22 +1,13 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-  nome: {
-    type: String,
+  data_hora: {
+    type: DateTime,
     required: true  
   },
-  telefone: {
+  local: {
     type: String,
-    required: true
-  },
-  endereco: {
-    type: String,
-    required: true
-  },
-  salario: {
-    type: Number,
-    min: 0.01,
-    require: true 
+    required: false
   }
 })
 
@@ -27,4 +18,4 @@ const schema = mongoose.Schema({
   3º: nome da collection no banco de dados (convenção: mesmo nome do model, mas com
       letra minúscula e no plural)
 */
-module.exports = mongoose.model('Funcionario', schema, 'funcionarios')
+module.exports = mongoose.model('Disponivel', schema, 'disponivel')

@@ -1,22 +1,24 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-  nome: {
-    type: String,
-    required: true  
+  funcionario: {
+    type: mongoose.ObjectId,
+    ref: 'Funcionario', 
+    require: true   
   },
-  telefone: {
-    type: String,
-    required: true
+  cliente: {
+    type: mongoose.ObjectId,
+    ref: 'Cliente', 
+    require: true   
   },
-  endereco: {
-    type: String,
-    required: true
+  servico: {
+    type: mongoose.ObjectId,
+    ref: 'Servico', 
+    require: true   
   },
-  salario: {
-    type: Number,
-    min: 0.01,
-    require: true 
+  observacao: {
+    type: String,
+    require: false
   }
 })
 
@@ -27,4 +29,4 @@ const schema = mongoose.Schema({
   3º: nome da collection no banco de dados (convenção: mesmo nome do model, mas com
       letra minúscula e no plural)
 */
-module.exports = mongoose.model('Funcionario', schema, 'funcionarios')
+module.exports = mongoose.model('Agendamento', schema, 'agendamentos')
