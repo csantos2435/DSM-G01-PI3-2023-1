@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
   data_hora: {
-    type: DateTime,
+    type: Date,
     required: true  
   },
   local: {
