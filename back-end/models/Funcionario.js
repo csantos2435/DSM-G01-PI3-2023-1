@@ -14,7 +14,7 @@ const schema = mongoose.Schema({
     required: true
   },
   salario: {
-    type: Number,
+    type: String,
     min: 0.01,
     require: true 
   }
