@@ -1,9 +1,13 @@
 const mongoose = require('mongoose')
 
 const schema = mongoose.Schema({
-  data_hora: {
+  data: {
     type: Date,
     required: true  
+  },
+  hora:{
+    type: String,
+    required: true
   },
   local: {
     type: String,

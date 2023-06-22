@@ -8,8 +8,8 @@
 }
 
 .square {
-  width: 600px;
-  height: 600px;
+  width: 1000px;
+  height: 500px;
   background-color: black;
   border: 2px solid white;
   color: white;
@@ -43,7 +43,6 @@
   font-family: 'Dancing Script', cursive;
   font-size: 150px;
   color: white;
-  top: 20%; /* Mova o elemento 20 pixels para cima */
   text-align: center; /* Centralize horizontalmente */
 }
 

@@ -1,42 +1,80 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 import "../Styles/Agendar.css";
 import { Link } from "react-router-dom";
 
 const AgendarHorarios = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [funcionarios, setFuncionarios] = useState([]);
+  const [cliente, setCliente] = useState([]);
+  const [servico, setServico] = useState([]);
+  const [observacao, setObservacao] = useState([]);
+  const [funcionarioSelecionado, setFuncionarioSelecionado] = useState('');
+  const [clienteSelecionado, setClienteSelecionado] = useState('');
+  const [servicoSelecionado, setServicoSelecionado] = useState('');
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  useEffect(() => {
+
+    fetch('http://localhost:3000/funcionarios')
+      .then(response => response.json())
+      .then(data => setFuncionarios(data));
+
+    fetch('http://localhost:3000/clientes')
+      .then(response => response.json())
+      .then(data => setCliente(data));
+    
+    fetch('http://localhost:3000/servicos')
+      .then(response => response.json())
+      .then(data => setServico(data));
+  }, []);
+
+  const handleFuncionarioChange = (event) => {
+    setFuncionarioSelecionado(event.target.value);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const handleClienteChange = (event) => {
+    setClienteSelecionado(event.target.value);
+  };
+
+  const handleServicoChange = (event) => {
+    setServicoSelecionado(event.target.value);
+  };
+
+  const handleCadastrarClick = () => {
+    fetch('http://localhost:3000/agendamentos', {
+      method: 'POST',
+      body: JSON.stringify({
+        funcionario: funcionarioSelecionado,
+        cliente: clienteSelecionado,
+        servico: servicoSelecionado,
+        observacao: observacao
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        document.location.reload()
+      })
   };
 
   return (
     <>
       <div className="corFundo">
-        <nav className="navbar">
+        <nav id="Nav" className="navbar">
           <div className="navbar-container">
+            <button id="item0" type="button" className="btn btn-outline-light">
+              <Link to="/Home/6" className="nav-link">Home</Link>
+            </button>
             <button id="item1" type="button" className="btn btn-outline-light">
-              <Link to="/CadastroFuncionario/2" className="nav-link">
-                Cadastro de Funcionário
-              </Link>
+              <Link to="/CadastroFuncionario/2" className="nav-link">Funcionário</Link>
             </button>
             <button id="item2" type="button" className="btn btn-outline-light">
-              <Link to="/CadastroCliente/3" className="nav-link">
-                Cadastro de Cliente
-              </Link>
+              <Link to="/CadastroCliente/3" className="nav-link">Cliente</Link>
             </button>
             <button id="item3" type="button" className="btn btn-outline-light">
-              <Link to="/CadastroServico/4" className="nav-link">
-                Cadastro de Serviços
-              </Link>
+              <Link to="/CadastroServico/4" className="nav-link">Serviços</Link>
             </button>
             <button id="item4" type="button" className="btn btn-outline-light">
-              <Link to="/AgendarHorarios/5" className="nav-link">
-                Agendar
-              </Link>
+              <Link to="/AgendarHorario/5" className="nav-link">Agendar</Link>
             </button>
           </div>
         </nav>
@@ -44,93 +82,53 @@ const AgendarHorarios = () => {
           <h1 className="titulo">Agendar Horários</h1>
           <div className="SeleF">
             <label htmlFor="funcionarioInput" className="form-label" id="letra">
-              Selecione Funcionário
+                Selecione Funcionário
+              <select className='form-control' list='funcionarioOptions' id='funcionarioInput' value={funcionarioSelecionado} onChange={handleFuncionarioChange}>
+                <option value="">Selecione um funcionário</option>
+                  {funcionarios.map(funcionario => (
+                <option key={funcionario.id} value={funcionario.id}>
+                  {funcionario.nome}
+                </option>
+                ))}
+              </select>
             </label>
-            <input
-              className="form-control"
-              list="funcionarioOptions"
-              id="funcionarioInput"
-              placeholder=""
-            />
-            <datalist id="funcionarioOptions">
-              <option value="Funcionário 1" />
-              <option value="Funcionário 2" />
-              <option value="Funcionário 3" />
-              <option value="Funcionário 4" />
-              <option value="Funcionário 5" />
-            </datalist>
           </div>
-
           <div className="SeleC">
             <label htmlFor="clienteInput" className="form-label" id="letra">
               Selecione Cliente
+              <select className='form-control' list='clienteOptions' id='clienteInput' value={clienteSelecionado} onChange={handleClienteChange}>
+                <option value="">Selecione um Cliente</option>
+                  {cliente.map(cliente => (
+                <option key={cliente.id} value={cliente.id}>
+                  {cliente.email}
+                </option>
+                ))}
+              </select>
             </label>
-            <input
-              className="form-control"
-              list="clienteOptions"
-              id="clienteInput"
-              placeholder=""
-            />
-            <datalist id="clienteOptions">
-              <option value="Cliente 1" />
-              <option value="Cliente 2" />
-              <option value="Cliente 3" />
-              <option value="Cliente 4" />
-              <option value="Cliente 5" />
-            </datalist>
           </div>
-
           <div className="SeleS">
             <label htmlFor="servicoInput" className="form-label" id="letra">
               Selecione o Serviço
+              <select className='form-control' list='servicoOptions' id='servicoInput' value={servicoSelecionado} onChange={handleServicoChange}>
+                <option value="">Selecione um Servico</option>
+                  {servico.map(servico => (
+                <option key={servico.id} value={servico.id}>
+                  {servico.descricao}
+                </option>
+                ))}
+              </select>
             </label>
-            <input
-              className="form-control"
-              list="servicoOptions"
-              id="servicoInput"
-              placeholder=""
-            />
-            <datalist id="servicoOptions">
-              <option value="Serviço 1" />
-              <option value="Serviço 2" />
-              <option value="Serviço 3" />
-              <option value="Serviço 4" />
-              <option value="Serviço 5" />
-            </datalist>
           </div>
 
-          <button type="button" className="btn btn-light" id="botaoH" onClick={openModal}>
-            Horários Disponíveis 
-          </button>
-          <button id="Cadastrar4" type="button" className="btn btn-light">
+          <div className="SeleO">
+            <label htmlFor="inputAddress" className="form-label" id="letra">Observação</label>
+            <input type="text" className="form-control" id="inputAddress" placeholder="Observação" value={observacao} onChange={e => setObservacao(e.target.value)}/>
+          </div>
+          <button id="Cadastrar4" type="button" className="btn btn-light" onClick={handleCadastrarClick}>
             Cadastrar
           </button>
         </div>
       </div>
-
-      {isModalOpen && (
-        <div className="modal-overlay2">
-          <h1 id="titulo4">Selecione um Horário Disponível</h1>
-          <select class="form-select" aria-label="Selecione um horário" id="SelecioneH">
-            <option selected>Selecione um horário</option>
-            <option value="1">Horário 1</option>
-            <option value="2">Horário 2</option>
-            <option value="3">Horário 3</option>
-          </select>
-
-          <select class="form-select" aria-label="Selecione uma Data" id="SelecioneD">
-            <option selected>Selecione uma data</option>
-            <option value="1">Data 1</option>
-            <option value="2">Data 2</option>
-            <option value="3">Data 3</option>
-          </select>
-
-          <button type="button" className="btn btn-light" onClick={closeModal} id="fechar2">
-            Fechar
-          </button>
-        </div>
-      )}
-
       <div className="line2"></div>
       <footer className="Footer">
         <p>Nome da empresa</p>
@@ -142,3 +140,4 @@ const AgendarHorarios = () => {
 };
 
 export default AgendarHorarios;
+

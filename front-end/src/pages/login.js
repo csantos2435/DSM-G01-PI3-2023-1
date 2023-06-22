@@ -19,7 +19,6 @@ function Login() {
           </div>
           <button id="entrar" type="button" class="btn btn-light">
             <Link to='Home/6' className='nav-link'>ENTRAR</Link></button>
-          <p className="Scads">Sem Cadastro?</p>
           <Link to='cadastro/1' className='nav-link'id="new-registration">Novo Cadastro</Link>
         </div>
       </div>

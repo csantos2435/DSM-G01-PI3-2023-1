@@ -3,6 +3,8 @@ import '../Styles/cadastro.css';
 
 
 function Cadastro() {
+    
+
     return(
         <div className="cor">
             <div className="rectangle12"></div>

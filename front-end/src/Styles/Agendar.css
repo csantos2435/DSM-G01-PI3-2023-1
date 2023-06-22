@@ -21,6 +21,14 @@
     left: 36px;
 }
 
+.SeleO{
+  position: absolute;
+  width: 450px;
+  right: 100px;
+  top: 360px;
+  left: 36px;
+}
+
 #Cadastrar4{
     position: absolute;
     top: 400px;

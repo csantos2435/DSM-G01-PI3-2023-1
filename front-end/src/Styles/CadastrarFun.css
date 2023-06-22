@@ -48,6 +48,10 @@
    
   }
 
+  #item0{
+    border-color: #000000;
+  }
+
   #item1{
     border-color: #000000;
   }
@@ -66,12 +70,13 @@
   
   .rectangle14 {
     position: absolute;
-    width: 1457px;
-    height: 607px;
+    width: 1270px;
+    height: 500px;
     background-color: #D8B6A4;
     border-radius: 10px;
     right: 40px;
     top: 10%;
+    margin-block: 10px;
   }
   /*#D8B6A4*/
   .Footer::before {
@@ -95,6 +100,7 @@
     height: 90px;
     bottom: 30px; /* Ajuste o espaçamento entre o footer e o rectangle14 */
     color: #ffffff;
+    margin-block: -50px;
   }
 
   .Footer p {
@@ -128,20 +134,11 @@
 
   #Endereco{
     position: absolute;
-    width: 450px;
+    width: 1000px;
     right: 100px;
     top: 240px;
     left: 36px;
   }
-
-  #Numero{
-    position: absolute;
-    width: 450px;
-    right: 100px;
-    top: 240px;
-    left: 590px;
-  }
-
 
   #Cadastrar2{
     position: absolute;

@@ -43,12 +43,13 @@
   
   .rectangle14 {
     position: absolute;
-    width: 1457px;
-    height: 607px;
+    width: 1270px;
+    height: 500px;
     background: #D8B6A4;
     border-radius: 10px;
     right: 40px;
     top: 10%;
+    margin-block: 10px;
   }
   
   .Footer::before {
@@ -72,6 +73,7 @@
     height: 90px;
     bottom: 30px; /* Ajuste o espaçamento entre o footer e o rectangle14 */
     color: #ffffff;
+    margin-block: -50px;
   }
 
   .Footer p {
@@ -131,6 +133,14 @@
     font-size: 20px;
   }
 
+  #Cadastrar5{
+    position: absolute;
+    top: 301px;
+    left: 280px;
+    width: 22%;
+    height: 8.5%;
+    font-size: 15px;
+  }
 
   .tela-aberta{
     position: absolute;
@@ -201,16 +211,9 @@
   
   #Endereco2{
     position: absolute;
-    width: 370px;
+    width: 760px;
     top: 200px;
     left: 16px;
-  }
-
-  #numero{
-    position: absolute;
-    width: 370px;
-    top: 200px;
-    left: 406px;
   }
 
 
